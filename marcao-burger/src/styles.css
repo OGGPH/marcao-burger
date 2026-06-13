@@ -1,0 +1,152 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Hamburgueria do Marcão - Dark Premium Design System */
+
+@theme inline {
+  --font-display: "Bebas Neue", "Impact", sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ember: var(--ember);
+  --color-carbon: var(--carbon);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Paleta */
+  --background: oklch(0.16 0.005 60); /* #111111 carbono */
+  --foreground: oklch(0.98 0.005 80);
+
+  --carbon: oklch(0.16 0.005 60);
+  --gold: oklch(0.72 0.13 75); /* #C89B3C dourado queimado */
+  --gold-soft: oklch(0.82 0.08 80);
+  --ember: oklch(0.58 0.22 27); /* #D62828 vermelho marcante */
+
+  --card: oklch(0.21 0.006 60);
+  --card-foreground: oklch(0.98 0.005 80);
+  --popover: oklch(0.21 0.006 60);
+  --popover-foreground: oklch(0.98 0.005 80);
+
+  --primary: oklch(0.72 0.13 75); /* gold */
+  --primary-foreground: oklch(0.14 0.005 60);
+
+  --secondary: oklch(0.25 0.006 60);
+  --secondary-foreground: oklch(0.98 0.005 80);
+
+  --muted: oklch(0.23 0.006 60);
+  --muted-foreground: oklch(0.68 0.01 80);
+
+  --accent: oklch(0.58 0.22 27); /* ember */
+  --accent-foreground: oklch(0.98 0.005 80);
+
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(0.98 0.005 80);
+
+  --border: oklch(0.28 0.006 60);
+  --input: oklch(0.25 0.006 60);
+  --ring: oklch(0.72 0.13 75);
+
+  /* Gradients & shadows */
+  --gradient-hero: radial-gradient(ellipse at 30% 20%, oklch(0.72 0.13 75 / 0.18), transparent 60%),
+                   linear-gradient(180deg, oklch(0.12 0.005 60) 0%, oklch(0.06 0.005 60) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.12 78), oklch(0.62 0.14 65));
+  --gradient-ember: linear-gradient(135deg, oklch(0.62 0.22 28), oklch(0.48 0.20 25));
+  --shadow-gold: 0 10px 40px -10px oklch(0.72 0.13 75 / 0.4);
+  --shadow-ember: 0 10px 40px -10px oklch(0.58 0.22 27 / 0.45);
+  --shadow-card: 0 20px 60px -20px oklch(0 0 0 / 0.6);
+
+  --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark {
+  /* same — we're dark by default */
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--carbon);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-hero { background: var(--gradient-hero); }
+  .bg-gradient-gold { background: var(--gradient-gold); }
+  .bg-gradient-ember { background: var(--gradient-ember); }
+  .shadow-gold { box-shadow: var(--shadow-gold); }
+  .shadow-ember { box-shadow: var(--shadow-ember); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .text-gradient-gold {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .container-prose { max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+
+  .fade-up { animation: fadeUp 0.8s var(--transition-smooth) both; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .float-slow { animation: float 6s ease-in-out infinite; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+}
